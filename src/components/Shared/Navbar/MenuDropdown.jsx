@@ -1,5 +1,5 @@
 import { AiOutlineMenu } from "react-icons/ai";
-//import Avatar from "./Avatar";
+import Avatar from "./Avatar";
 import { useCallback, useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { Link } from "react-router-dom";
@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 const MenuDropdown = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-  const toggleOpen = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, []);
+//   const toggleOpen = useCallback(() => {
+//     setIsOpen((value) => !value);
+//   }, []);
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
@@ -17,13 +17,13 @@ const MenuDropdown = () => {
           AirCNC your home
         </div>
         <div
-          onClick={toggleOpen}
+          onClick={() => setIsOpen(!isOpen)}
           className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
         >
           <AiOutlineMenu />
           <div className="hidden md:block">
-            {/* <Avatar /> */}
-          </div>
+            <Avatar />
+            </div>
         </div>
       </div>
       {isOpen && (
