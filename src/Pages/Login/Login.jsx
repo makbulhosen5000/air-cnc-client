@@ -1,10 +1,10 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useRef } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { saveUser } from "../../api/auth";
 
 const Login = () => {
     const emailRef = useRef();
@@ -22,8 +22,10 @@ const Login = () => {
     const handleGoogleSignIn = () =>{
         signInWithGoogle()
         .then(result=>{
-            console.log(result.user);
-            navigate(from, { replace: true });
+          console.log(result.user);
+          //save user to DB //api/auth.js
+          saveUser(result.user)
+          navigate(from, { replace: true });
         })
         .catch(err=>{
             setLoading(false);

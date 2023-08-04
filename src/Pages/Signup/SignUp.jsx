@@ -1,9 +1,11 @@
 import { useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { AuthContext } from "../../providers/AuthProvider";
+
 import { toast } from "react-hot-toast";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { AuthContext } from "../../providers/AuthProvider";
+import { saveUser } from "../../api/auth";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -15,6 +17,8 @@ const SignUp = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        //save user to DB //src/api/auth.js
+        saveUser(result.user);
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -46,7 +50,9 @@ const SignUp = () => {
             console.log(result.user);
             updateUserProfile(name, imageUrl)
               .then(()=>{
-                toast.success('Signup successfully');
+                toast.success("SignUp successfully");
+                //save user to DB //api/auth.js
+                saveUser(result.user);
               })
               .catch((err) => {
                 setLoading(false);
