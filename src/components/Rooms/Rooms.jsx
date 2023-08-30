@@ -5,6 +5,7 @@ import Loader from '../Shared/Loader';
 import { useSearchParams } from 'react-router-dom';
 import { MdRecommend } from 'react-icons/md';
 import Heading from '../Heading/Heading';
+import { getAllRooms } from '../../api/room';
 
 const Rooms = () => {
     const [params, setParams] = useSearchParams();
@@ -15,8 +16,8 @@ const Rooms = () => {
 
     useEffect(() => {
       setLoading(true);
-      fetch("../../../public/room.json")
-        .then((res) => res.json())
+      // get all rooms function from api/Room.js
+      getAllRooms()
         .then((data) => {
           if (category) {
             const filtered = data.filter((room) => room.category === category);

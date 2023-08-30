@@ -9,10 +9,12 @@ const RoomReservation = () => {
           <div className="font-light text-neutral-600">Night</div>
         </div>
         <hr />
-        <Calender />
+        <div className="flex justify-center">
+          <Calender />
+        </div>
         <hr />
-        <div className='p-4'>
-            <Button label='Reserve'/>
+        <div className="p-4">
+          <Button label="Reserve" />
         </div>
         <hr />
         <div className="p-4 flex flex-row items-center justify-between font-semibold text-lg">

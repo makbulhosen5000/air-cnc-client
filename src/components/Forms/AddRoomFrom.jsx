@@ -50,7 +50,12 @@ const AddRoomForm = ({
               <label htmlFor="location" className="block text-gray-600">
                 Select Availability Range
               </label>
-              <DateRange rangeColors={["#F43F5E"]} />
+              {/* date range */}
+              <DateRange
+                ranges={[dates]}
+                onChange={handleDates}
+                rangeColors={["#F43F5E"]}
+              />
             </div>
           </div>
           <div className="space-y-6">
@@ -73,7 +78,9 @@ const AddRoomForm = ({
                 <div className="flex flex-col w-max mx-auto text-center">
                   <label>
                     <input
-                      onChange={(e)=>{handleImageChange(e.target.files[0])}}
+                      onChange={(e) => {
+                        handleImageChange(e.target.files[0]);
+                      }}
                       className="text-sm cursor-pointer w-36 hidden"
                       type="file"
                       name="image"

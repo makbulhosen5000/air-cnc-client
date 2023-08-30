@@ -7,11 +7,14 @@ import RoomDetails from '../Pages/RoomDetails/RoomDetails';
 import PrivateRoute from './PrivateRoute';
 import DashboardLayout from '../layouts/DashboardLayout';
 import AddRoom from '../Pages/Dashboard/AddRoom';
+import { getRoom } from '../api/room';
+import ErrorMessage from '../Pages/Error/ErrorMessage';
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement:<ErrorMessage/>,
     children: [
       {
         path: "/",
@@ -24,6 +27,7 @@ export const router = createBrowserRouter([
             <RoomDetails />
           </PrivateRoute>
         ),
+        loader: ({ params }) => getRoom(params.id),
       },
     ],
   },
@@ -36,13 +40,13 @@ export const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path:'dashboard',
-    element:<DashboardLayout/>,
-    children:[
+    path: "dashboard",
+    element: <DashboardLayout />,
+    children: [
       {
-        path:"/dashboard/add-room",
-        element:<AddRoom/>
-      }
-    ]
-  }
+        path: "/dashboard/add-room",
+        element: <AddRoom />,
+      },
+    ],
+  },
 ]);
